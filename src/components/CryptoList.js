@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View, ActivityIndicator } from 'react-native';
+import {FlatList, StyleSheet, View, ActivityIndicator, Text} from 'react-native';
 import React from 'react';
 import CryptoItem from './CryptoItem';
 
@@ -13,6 +13,11 @@ export default function CryptoList({ list, favorites, loadMore }) {
                         <CryptoItem item={item} isFavourite={isFavourite} />
                     );
                 }}
+                ListEmptyComponent={() => (
+                    <View style={{flex:1,height:200, justifyContent:"center",alignItems:"center"}}>
+                        <Text>Birim bulunamadı!</Text>
+                    </View>
+                )}
                 keyExtractor={item => item.id}
                 onEndReached={loadMore}
                 onEndReachedThreshold={0.1}

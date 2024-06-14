@@ -16,11 +16,12 @@ export default function CryptoItem({ item, isFavourite }) {
             }}>
             <View style={styles.itemContainer}>
                 <View style={styles.horizontalView}>
-                    <Image source={{ uri: item.image }} style={styles.image} />
+                    <Image source={{uri: item.image}} style={styles.image}/>
+
                     <View style={styles.nameContainer}>
                         <View style={styles.horizontalView}>
                             <Text style={styles.title}>{item.name}</Text>
-                            <View style={{ width: 10 }} />
+                            <View style={{width: 10}}/>
                             <TouchableOpacity
                                 onPress={() => {
                                     if (isFavourite) {
@@ -29,7 +30,7 @@ export default function CryptoItem({ item, isFavourite }) {
                                         dispatch(addFavorite(item.id));
                                     }
                                 }}>
-                                <Ionicons name={'star'} size={20} color={isFavourite ? '#FFD700' : '#939393'} />
+                                <Ionicons name={'star'} size={20} color={isFavourite ? '#FFD700' : '#939393'}/>
                             </TouchableOpacity>
                         </View>
                         <Text>{item.symbol.toUpperCase()}</Text>

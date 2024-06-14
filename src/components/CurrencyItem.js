@@ -1,33 +1,48 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import {
+    addFavorite,
+    addFavoriteCURRENCY,
+    removeFavorite,
+    removeFavoriteCurrency
+} from "../redux/actions/favoriteActions";
+import {Ionicons} from "@expo/vector-icons";
+import {useDispatch} from "react-redux";
 
-export default function CurrencyItem({ item }) {
+export default function CurrencyItem({ item, isFavourite }) {
+
+    const dispatch = useDispatch();
     return (
-        <TouchableOpacity
-            onPress={
-                () => {
-                    console.log("abcd");
-                }
-            }>
-            <View style={styles.itemContainer}>
-                <View style={styles.horizontalView} >
-                    <Image
-                        source={{ uri: "https://picsum.photos/200" }}
-                        style={styles.image}
-                    />
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.title}>{item.Name}</Text>
-                        <Text>{item.ShortName}</Text>
+        <View style={styles.itemContainer}>
+            <View style={styles.horizontalView} >
+                <Image
+                    source={{ uri: `https://wise.com/public-resources/assets/flags/rectangle/${item.code.toLowerCase()}.png` }}
+                    style={styles.image}
+                />
+                <View style={styles.nameContainer}>
+                    <View style={styles.horizontalView} >
+                        <Text style={styles.title}>{item.name}</Text>
+                        <View style={{width: 10}}/>
+                        <TouchableOpacity
+                            onPress={() => {
+                                if (isFavourite) {
+                                    dispatch(removeFavoriteCurrency(item.code));
+                                } else {
+                                    dispatch(addFavoriteCURRENCY(item.code));
+                                }
+                            }}>
+                            <Ionicons name={'star'} size={20} color={isFavourite ? '#FFD700' : '#939393'}/>
+                        </TouchableOpacity>
                     </View>
+                    <Text>{item.code}</Text>
                 </View>
-
-                <View style={styles.priceContainer}>
-                    <Text style={styles.title} >{item} ₺</Text>
-
-                </View>
-
             </View>
-        </TouchableOpacity>
+
+            <View style={styles.priceContainer}>
+                <Text style={styles.title} >{(1 / item.rate).toFixed( (1 /  item.rate) < 0.001 ? 5:3)} ₺</Text>
+            </View>
+
+        </View>
     )
 }
 
@@ -46,7 +61,10 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        marginRight:10
+        marginRight:10,
+        borderStyle: "solid",
+        borderColor: "black",
+        borderWidth: 1
     },
     horizontalView: {
         flexDirection: "row"

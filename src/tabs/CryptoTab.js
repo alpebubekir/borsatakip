@@ -32,13 +32,13 @@ export default function CryptoTab() {
         );
     }
 
-    if (error) {
+    /*if (error) {
         return (
             <View style={styles.errorContainer}>
                 <Text style={styles.errorText}>Error: {error}</Text>
             </View>
         );
-    }
+    }*/
 
     return (
         <View style={{ flex: 1 }}>

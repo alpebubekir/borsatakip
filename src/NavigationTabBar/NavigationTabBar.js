@@ -25,8 +25,16 @@ export default function NavigationTabBar( ) {
                 tabBarLabelStyle: {fontSize : 14, fontWeight:"bold", marginBottom:10},
                 tabBarActiveBackgroundColor: '#FFDEDD',
                 tabBarActiveTintColor:"black",
-                headerTitle: 'Krito',
+                headerTitle: 'Kripto',
             })}/>
+          <Tab.Screen name="Döviz" component={CurrencyTab}
+                      options={() => ({
+                          tabBarLabel: 'Döviz', // Metin belirleme
+                          tabBarLabelStyle: {fontSize : 14, fontWeight:"bold", marginBottom:10},
+                          tabBarActiveBackgroundColor: '#FFDEDD',
+                          tabBarActiveTintColor:"black",
+                          headerTitle: 'Döviz',
+                      })}/>
       <Tab.Screen name="Favoriler" component={FavoriteTab}
             options={() => ({
                 tabBarLabel: 'Favoriler', // Metin belirleme
